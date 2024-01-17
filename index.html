@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/fullpage.js/dist/fullpage.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        .column-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            flex-basis: 30%;
+            padding: 0 10px;
+        }
+
+        .column h3,
+        .column p {
+            font-size: 18px;
+        }
+
+        img {
+            max-width: 80%;
+        }
+
+        #sect3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        #example thead th {
+            color: white;
+        }
+
+        #example_info,
+        #example_filter input {
+            color: white;
+        }
+
+        #example_length label,
+        #example_filter label {
+            color: white;
+        }
+
+        #example_length select,
+        #example_filter input {
+            color: white;
+        }
+
+        #example_paginate .paginate_button {
+            color: white !important;
+        }
+
+        .white-icon {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="fullpage">
+        <div class="section" id="heehee">
+            <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+                <a class="navbar-brand" href="#">
+                    Covid-19 in Singapore
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#heehee">
+                                Cases <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#heeheee">
+                                Vaccination Progress
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#heeehee">
+                                Vaccination Centres
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6 text-white">
+                        <h2 class="float-animation">Cases</h2>
+                        <br /><br />
+                        <div class="column-container">
+                            <div class="column">
+                                <h3 class="float-animation">Total Cases</h3>
+                                <div id="cases">257510</div>
+                            </div>
+                            <div class="column">
+                                <h3 class="float-animation">In Hospital</h3>
+                                <div id="hospital">1365</div>
+                            </div>
+                            <div class="column">
+                                <h3 class="float-animation">Total Deaths</h3>
+                                <div id="deaths">678</div>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <p class="float-animation">The number of Covid-19 cases in Singapore has grown to 257510, with
+                            2079 new cases reported
+                            on 14 Dec.</p>
+                        <br />
+                        <p class="float-animation">Of these, 2030 were reported in the community and 40 in the workers’
+                            dormitories.
+                            The remaining nine cases were imported.</p>
+                        <br />
+                        <p class="float-animation"> Of these, 2030 were reported in the community and 40 in the workers’
+                            dormitories.
+                            The remaining nine cases were imported. A further 2275 patients were discharged, including
+                            366 seniors aged above 60. A total of 238909 cases have recovered to date.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <canvas id="lineChart" class="float-animation" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="heeheee">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 class="float-animation text-white">9 out of 10 Singaporeans</h3>
+                        <p class="float-animation text-white">have been vaccinated.
+                        <p>
+                            <img src="image.jpg" alt="Vaccination Image" class="float-animation">
+                    </div>
+                    <div class="col-md-6">
+                        <h3 class="float-animation text-white">Vaccination Progress</h3>
+                        <p class="float-animation text-white">For every 100 people in Singapore, 88 have received their
+                            first
+                            dose
+                            and 87 are fully vaccinated as at 14 Dec.</p>
+                        <br />
+                        <p class="float-animation text-white">In addition, the Health Ministry reported that as at 14
+                            Dec, 96
+                            percent of the eligible population (aged 12 years and above) have completed
+                            their
+                            full regime, or received two doses of Covid-19 vaccines.</p>
+                        <br />
+                        <p class="float-animation text-white">With new Covid-19 variants such as Omicron surfacing, full
+                            vaccination
+                            will have to include booster shots as well.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="heeehee">
+            <div id="sect3">
+                <h2>Vaccination centres</h2>
+                <p>There are currently 12 vaccination centres in operation.</p>
+            </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="map-container">
+                            <img id="map" src="singapore.svg" alt="Singapore Image" class="float-animation">
+                            <!-- Font Awesome location icon hotspots -->
+                            <i id="hotspot1" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 100px; left: 300px;"></i>
+                            <i id="hotspot2" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 150px; left: 200px;"></i>
+                            <i id="hotspot3" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 125px; left: 180px;"></i>
+                            <i id="hotspot4" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 50px; left: 210px;"></i>
+                            <i id="hotspot5" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 150px; left: 370px;"></i>
+                            <i id="hotspot6" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 180px; left: 215px;"></i>
+                            <i id="hotspot7" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 100px; left: 266px;"></i>
+                            <i id="hotspot8" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 40px; left: 100px;"></i>
+                            <i id="hotspot9" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 200px; left: 200px;"></i>
+                            <i id="hotspot10" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 130px; left: 40px;"></i>
+                            <i id="hotspot11" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 190px; left: 80px;"></i>
+                            <i id="hotspot12" class="fas fa-map-marker-alt hotspot-icon white-icon"
+                                style="position: absolute; top: 100px; left: 390px;"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-6" class="float-animation">
+                        <table id="example" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Vaccine Type</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bedok Polyclinic</td>
+                                    <td>11 Bedok North Street 1 Heartbeat@Bedok #02-01, #03-01, Singapore 469662</td>
+                                    <td>Pfizer</td>
+                                    <td>6343 1121</td>
+                                </tr>
+                                <tr>
+                                    <td>Bukit Batok Polyclinic</td>
+                                    <td>50 Bukit Batok West Avenue 3, Singapore 659164</td>
+                                    <td>Moderna</td>
+                                    <td>6343 1122</td>
+                                </tr>
+                                <tr>
+                                    <td>Bukit Merah Polyclinic</td>
+                                    <td>162 Bukit Merah Central Level 4, Singapore 150163</td>
+                                    <td>Pfizer</td>
+                                    <td>6343 1123</td>
+                                </tr>
+                                <tr>
+                                    <td>Choa Chu Kang Polyclinic</td>
+                                    <td>2 Teck Whye Crescent, Singapore 688846</td>
+                                    <td>Moderna</td>
+                                    <td>6343 1124</td>
+                                </tr>
+                                <tr>
+                                    <td>Clementi Polyclinic</td>
+                                    <td>451 Clementi Avenue 3, Singapore 120451</td>
+                                    <td>Pfizer</td>
+                                    <td>6343 1125</td>
+                                </tr>
+                                <tr>
+                                    <td>Geylang Polyclinic</td>
+                                    <td>21 Geylang East Central, Singapore 389707</td>
+                                    <td>Pfizer</td>
+                                    <td>6343 1126</td>
+                                </tr>
+                                <tr>
+                                    <td>Hougang Polyclinic</td>
+                                    <td>89 Hougang Avenue 4, Singapore 538829</td>
+                                    <td>Pfizer</td>
+                                    <td>6765 1121</td>
+                                </tr>
+                                <tr>
+                                    <td>Jurong Polyclinic</td>
+                                    <td>190 Jurong East Avenue 1, Singapore 609788</td>
+                                    <td>Pfizer</td>
+                                    <td>6765 1122</td>
+                                </tr>
+                                <tr>
+                                    <td>Marine Parade Polyclinic</td>
+                                    <td>80 Marine Parade Central, Singapore 440080</td>
+                                    <td>Pfizer</td>
+                                    <td>6765 1123</td>
+                                </tr>
+                                <tr>
+                                    <td>Outram Polyclinic</td>
+                                    <td>3 Second Hospital Avenue, #02-00 Health Promotion Board Building, Singapore
+                                        168937</td>
+                                    <td>Comirnaty</td>
+                                    <td>6765 1124</td>
+                                </tr>
+                                <tr>
+                                    <td>Pasir Ris Polyclinic</td>
+                                    <td>1 Pasir Ris Drive 4, Singapore 519457</td>
+                                    <td>Comirnaty</td>
+                                    <td>6765 1125</td>
+                                </tr>
+                                <tr>
+                                    <td>Pioneer Polyclinic</td>
+                                    <td>26 Jurong West Street 61, Singapore 648201</td>
+                                    <td>Moderna</td>
+                                    <td>6765 1126</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/fullpage.js/dist/fullpage.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <script>
+        var s1 = anime.timeline({
+            autoplay: true
+        });
+
+        s1.add({
+            targets: '.float-animation',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            easing: 'easeInOutQuad',
+            duration: 1500,
+            delay: anime.stagger(100)
+        });
+
+
+        var s2 = anime.timeline({
+            autoplay: false
+        });
+
+        s2.add({
+            targets: '.float-animation',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            easing: 'easeInOutQuad',
+            duration: 1500,
+            delay: anime.stagger(100)
+        });
+
+        $('#example').DataTable({
+            pageLength: 5,
+        });
+
+        var s3 = anime.timeline({
+            autoplay: false
+        });
+
+        s3.add({
+            targets: '.float-animation',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            easing: 'easeInOutQuad',
+            duration: 1500,
+            delay: anime.stagger(100),
+            complete: function () {
+                // You can add additional actions here if needed
+            }
+        });
+
+
+        $(document).ready(function () {
+
+            $('#example').DataTable();
+
+            $("#fullpage").fullpage({
+                sectionsColor: ["#000000", "#000000", "#000000"],
+                navigation: true,
+                navigationPosition: "right",
+
+                afterLoad: function (origin, destination, direction) {
+                    // play animation after section 2 loads
+                    if (destination.index == 1) {
+                        s2.play(); // anime.js play method
+                    }
+
+                    if (destination.isLast) {
+                        s3.play(); // anime.js play method
+                    }
+                }
+            });
+
+            var ctx = document.getElementById('lineChart').getContext('2d');
+            var days = ['Dec 1', 'Dec 2', 'Dec 3', 'Dec 4', 'Dec 5', 'Dec 6', 'Dec 7', 'Dec 8', 'Dec 9', 'Dec 10', 'Dec 11', 'Dec 12', 'Dec 13', 'Dec 14'];
+            var dailyCases = [1134, 1056, 986, 771, 756, 721, 654, 742, 689, 512, 455, 376, 244, 103];
+
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: days,
+                    datasets: [{
+                        label: 'Covid-19 Cases',
+                        data: dailyCases,
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            anime({
+                targets: '#cases',
+                innerHTML: [0, 257510],
+                easing: 'linear',
+                round: 1,
+                duration: 4000
+            });
+
+            anime({
+                targets: '#hospital',
+                innerHTML: [0, 1365],
+                easing: 'linear',
+                round: 1,
+                duration: 4000
+            });
+
+            anime({
+                targets: '#deaths',
+                innerHTML: [0, 678],
+                easing: 'linear',
+                round: 1,
+                duration: 4000
+            });
+
+            tippy('#hotspot1', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Bedok Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot2', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Bukit Batok Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot3', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Bukit Merah Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot4', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Choa Chu Kang Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot5', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Clementi Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot6', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Geyland Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot7', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Hougang Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot8', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Jurong Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot9', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Marine Parade Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot10', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Outram Polytechnic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot11', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Pasir Ris Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+
+            tippy('#hotspot12', {
+                placement: 'right', //place tippy to the right
+                content: '<strong>Pioneer Polyclinic</strong>',
+                allowHTML: true, //allow HTML in tippy content
+                delay: 500, //delay tippy showing and hiding (in milliseconds)
+                followCursor: true //get tippy to follow mouse cursor
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
